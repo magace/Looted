@@ -24,7 +24,13 @@ The goal is to attempt to find the gfx code for whatever items we find then matc
 - I highly recommend installing Visual Studio  Code and the MS Python extension too so you can run it from inside VC: https://code.visualstudio.com/download
 - Open a new command prompt or terminal inside visual code and type "pip install requests".
 - Download Looted.zip and extract the files somewhere.
-- Open and edit config.json.  Here you will need to enter your discord webhook and D2RB path.  clear_logs will delete all the bot's logs on startup.  sleep_seconds is how long to wait before checking folders for new items.
+- Edit Config.json
+  - Enter your discord hook inside discord_webhook.
+  - Enter d2rb path inside root_path.
+  - clear_logs will clear all logs in the logs and looted folder on startup.
+  - sleep_seconds is how long it waits between checking folders.  Lower = more cpu usage.
+  - colors are experimental work in progress.
+  - skip_items are names of items you want to avoid sending to Discord.
 - Run Looted.py I run it from inside visual code by hitting CTRL + f5  you can also install pyinstaller to create a .exe if you want.
 
 
