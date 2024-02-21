@@ -1,0 +1,9 @@
+{
+    "discord_webhook": "https://discord.com/api/webhooks/YOUR-OWN-WEBHOOK",
+    "root_path": "C:\\Users\\user\\Desktop\\gif\\D2RB",
+    "clear_logs": false,
+    "sleep_seconds": 5,
+    "rune_color": "Gold",
+    "runeword_color": "Blue",
+    "unique_color": "Red"
+}
