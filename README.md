@@ -36,6 +36,7 @@ The goal is to attempt to find the gfx code for whatever items we find then matc
 
 **Known issues and what next?**
 - Not all items are mapping.  I just started using this so I am still learning how everything works.
+- I am pretty sure gainlevels is causing items to repost.  I need to look at those logs.
 - Find new images for d2r uniques and sets.
 - Finish detecting where items are found.  I will create a new branch for that.
 - Finding pickit line for items found.  Like I said I'm new to GIF but at first glance, it looks like it could "possibly" be done.
