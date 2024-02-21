@@ -33,6 +33,7 @@ if config:
     unique_color = config['unique_color']
     sleep_seconds = config['sleep_seconds']
     clear_logs = config['clear_logs']
+    skip_items = config.get('skip_items', [])
     loot_path = os.path.join(root_path, 'Looted')
     logs_path = os.path.join(root_path, 'Logs')
     print(f"Discord Webhook URL: {discord_webhook}")
@@ -131,8 +132,10 @@ def extract_base_item_type(full_item_name):
     return None
 
 def find_images(item, assets_dir):
+    global skip_items 
     code = None
     image_found = False
+    item_should_be_skipped = False
     colortype = int(choice(discColor))
     runeword_found = False
     def search_for_item_by_type(item_type, assets_directory):
@@ -158,6 +161,11 @@ def find_images(item, assets_dir):
                     uniques_data = json.load(file)
                     for item_data in uniques_data.values():
                         if item_data.get('name', '').lower() == item['Name'].lower():
+                            item_name_lower = item_data.get('name', '').lower()
+                            if any(skip_item.lower() == item_name_lower for skip_item in skip_items):
+                                    print(f"Skipping item: {item['Name']}")
+                                    item_should_be_skipped = True
+                                    break
                             code = item_data.get('code')
                             image_found = True
                             if code.startswith('Runeword'):
@@ -188,7 +196,7 @@ def find_images(item, assets_dir):
             code = type_code
         else:
             item_name = item['Name'] 
-            base_item_type = extract_base_item_type(item_name)  # extract the base item type
+            base_item_type = extract_base_item_type(item_name)
 
             if base_item_type:
                 code = notfound_map.get(base_item_type)
@@ -198,6 +206,8 @@ def find_images(item, assets_dir):
                     print(f"No valid code found for the base item type {base_item_type}.")
             else:
                 print("No base item type extracted from item name.")
+    if item_should_be_skipped:
+        return            
     if image_found and code:
         action = "sending to Discord"
         print(f"Image found, {action}: {code}")
